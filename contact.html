@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Louie's on Main</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+   <nav class="navbar">
+    <a href="index.html" class="logo-link">
+        <img src="logo.png" alt="Louie's on Main" class="nav-logo">
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+    <section class="section-padding animate">
+        <h1 style="text-align: center; margin-bottom: 50px;">Get In Touch</h1>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="contact-info">
+                <h2 style="color: var(--primary-red); margin-bottom: 15px;">Visit Us</h2>
+                <p>123 Main Street<br>Downtown City, ST 12345</p>
+                <p style="margin: 20px 0;"><strong>Phone:</strong> (555) 123-4567</p>
+                
+                <h2 style="color: var(--primary-red); margin-bottom: 15px;">Hours</h2>
+                <p>Mon - Thu: 11:00 AM - 10:00 PM</p>
+                <p>Fri - Sat: 11:00 AM - 12:00 AM</p>
+                <p>Sunday: 12:00 PM - 9:00 PM</p>
+            </div>
+
+            <form class="contact-form" id="gourmet-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="How can we help?" required></textarea>
+    <button type="submit" class="btn-main" style="width: 100%;">SUBMIT INQUIRY</button>
+</form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/louiesonmain_gg/" target="_blank">
+    <i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://www.facebook.com/louiesonmain/" target="_blank">
+    <i class="fab fa-facebook"></i>
+</a>
+
+<a href="https://www.instagram.com/louiesonmain_gg/" target="_blank">
+    <i class="fab fa-yelp"></i>
+</a>
+        </div>
+    </footer>
+
+<script>
+    document.getElementById('gourmet-form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop the instant jump
+        
+        // Create a black overlay for the fade effect
+        const loader = document.createElement('div');
+        loader.style.cssText = `
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            pointer-events: none;
+        `;
+        document.body.appendChild(loader);
+
+        // Start the fade out
+        setTimeout(() => {
+            loader.style.opacity = '1';
+        }, 10);
+
+        // Redirect after the animation finishes
+        setTimeout(() => {
+            window.location.href = "thankyou.html";
+        }, 1600); 
+    });
+</script>
+
+</body>
+</html>

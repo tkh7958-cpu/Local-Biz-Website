@@ -1,0 +1,475 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden; /* Prevents horizontal shaking during animations */
+}
+
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   Change your main colors and fonts here
+   ========================================= */
+:root {
+    --primary-red: #d32f2f;      /* The main button & accent color */
+    --dark-bg: #0a0a0a;         /* Background for the whole site */
+    --card-bg: #1a1a1a;         /* Background for menu items/cards */
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-white);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scrolling on mobile */
+}
+
+/* =========================================
+   2. NAVIGATION BAR
+   The top menu that stays at the top
+/* =========================================
+   SECTION 2: NAVBAR (FIXED LOGO & LINKS)
+   ========================================= */
+.navbar {
+    background-color: #000000 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 5% !important;
+    height: 110px !important; /* This is the total height of the bar */
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    border-bottom: 3px solid #FF0000 !important; 
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    /* ADJUST THIS NUMBER TO CHANGE LOGO SIZE */
+    height: 80px !important; 
+    width: auto !important;
+    display: block;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    display: flex !important;
+    list-style: none !important;
+    gap: 35px !important;
+}
+
+/* ALL LINKS START WHITE (NO ACTIVE RED) */
+.nav-links a, 
+.nav-links a.active {
+    color: #FFFFFF !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none !important;
+    text-shadow: none !important;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+/* HOVER ONLY: TURNS RED AND GLOWS */
+.nav-links a:hover {
+    color: #FF0000 !important;
+    text-shadow: 0 0 15px #FF0000, 0 0 25px #FF0000 !important;
+}
+
+/* UNDERLINE: ONLY SHOWS ON HOVER */
+.nav-links a::after,
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    width: 0; 
+    height: 4px;
+    bottom: -8px;
+    left: 0;
+    background: #FF0000;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    box-shadow: 0 0 15px #FF0000 !important;
+}
+
+/* =========================================
+   3. HERO SECTION
+   The big image at the top of the Home Page
+   ========================================= */
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* =========================================
+   4. INTERACTIVE SLIDESHOW
+   The automatic sliding images
+   ========================================= */
+/* Container for the slideshow */
+.slideshow {
+    width: 100%;
+    max-width: 900px; /* Limits how wide the slideshow gets */
+    height: 450px;    /* Set a specific height */
+    margin: 40px auto; /* Centers it and adds space top/bottom */
+    overflow: hidden;
+    border: 1px solid rgba(255, 0, 0, 0.3); /* Optional: thin red border */
+    position: relative;
+}
+
+/* Individual images inside the slideshow */
+.slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This keeps the image from looking stretched */
+    display: block;
+}
+
+.slides {
+    display: flex;
+    width: 500%; /* Adjust based on number of images */
+    height: 100%;
+    animation: autoSlide 18s infinite;
+}
+
+.slides img { width: 20%; object-fit: cover; }
+
+@keyframes autoSlide {
+    0%, 20% { transform: translateX(0); }
+    25%, 45% { transform: translateX(-20%); }
+    50%, 70% { transform: translateX(-40%); }
+    75%, 95% { transform: translateX(-60%); }
+    100% { transform: translateX(0); }
+}
+
+/* =========================================
+   5. BUTTONS & HOVER EFFECTS
+   Style for "View Menu" and Form buttons
+   ========================================= */
+.btn-main {
+    background: var(--primary-red);
+    color: white;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-main:hover {
+    background: #b71c1c;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+}
+
+/* =========================================
+   6. GRID LAYOUTS (Home & Gallery)
+   Controls spacing for food items and photos
+   ========================================= */
+.section-padding { padding: 80px 10%; }
+
+.grid {
+    display: grid;
+    /* This tells the grid to fill in gaps automatically */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-auto-flow: dense; 
+    gap: 20px;
+}
+
+.ratio-3-2 { aspect-ratio: 3 / 2; }
+.ratio-4-2 { aspect-ratio: 4 / 2; }
+
+/* Mobile Adjustment - Make everything 3/2 on small phones so it fits better */
+@media (max-width: 600px) {
+    .ratio-4-2 { aspect-ratio: 3 / 2; }
+    .grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   7. MENU PAGE SPECIFIC
+   The list of burgers, tacos, and drinks
+   ========================================= */
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    transition: var(--transition);
+}
+
+.menu-item:hover {
+    background: #111;
+    border-left: 4px solid var(--primary-red);
+}
+
+.price { color: var(--primary-red); font-weight: bold; font-size: 1.2rem; }
+
+/* Menu Interaction */
+.menu-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: #151515;
+    border-left: 5px solid var(--primary-red);
+    transform: translateX(10px); /* Slight slide right on hover */
+}
+
+/* Lightbox Content Styling */
+.pop-content {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid var(--primary-red);
+    max-width: 500px;
+    width: 90%;
+}
+
+.pop-content img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+}
+
+.pop-content h3 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   8. CONTACT FORM
+   Input fields and text areas
+   ========================================= */
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #151515;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 5px;
+}
+
+.contact-form input:focus { border-color: var(--primary-red); outline: none; }
+
+/* =========================================
+   9. LIGHTBOX (Pop-up Image)
+   The effect when you click an image
+   ========================================= */
+.lightbox:target { display: flex; }
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox img { max-width: 90%; max-height: 80%; border: 4px solid var(--primary-red); }
+
+Yes, Section 9 is the part of your style.css file dedicated to the Lightbox (Pop-up).
+
+Since your CSS file is getting long, I recommend literally typing /* Section 9: Lightbox */ as a label so you can find it later. Add this code to the bottom of your style.css file.
+
+The Section 9 CSS (Add this)
+CSS
+/* =========================================
+   9. LIGHTBOX (Pop-up Image Logic)
+   ========================================= */
+
+/* The main dark background that covers the whole screen */
+.lightbox {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92); /* Super dark overlay */
+    z-index: 10000; /* Stays on top of everything */
+    justify-content: center;
+    align-items: center;
+}
+
+/* The "Click Anywhere" close link */
+.close-light {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: default; /* Arrow cursor on the black space */
+}
+
+/* The actual box holding your food photo */
+.pop-content {
+    position: relative;
+    background: #111;
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 85%;
+    border: 2px solid var(--primary-red);
+    box-shadow: 0 0 30px rgba(211, 47, 47, 0.4);
+    cursor: auto; /* Normal cursor when hovering the food */
+}
+
+/* Make sure the image fits perfectly inside the pop-up */
+.pop-content img {
+    width: 100%;
+    display: block;
+    border-radius: 6px;
+}
+
+/* This is the magic that opens the box when you click the menu item */
+.lightbox:target {
+    display: flex;
+}
+
+/* =========================================
+   10. FOOTER & SOCIAL MEDIA
+   The bottom of the page with icons
+   ========================================= */
+footer { padding: 60px; text-align: center; background: #000; }
+
+.social-icons a {
+    color: white;
+    font-size: 2rem;
+    margin: 0 20px;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.social-icons a:hover {
+    color: var(--primary-red);
+    transform: translateY(-5px);
+}
+
+/* =========================================
+   11. MOBILE RESPONSIVENESS
+   Ensures the site looks good on phones
+   ========================================= */
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; text-align: center; }
+    .nav-links { margin-top: 20px; }
+    .nav-links li { margin: 5px 10px; }
+    .hero h1 { font-size: 2.5rem; }
+    .slider-wrapper { height: 300px; }
+}
+
+/* The Animation Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply this to your Menu Cards and Sections */
+.menu-item, .gallery-item, .about-content {
+    view-timeline-name: --revealing-image;
+    view-timeline-axis: block;
+
+    /* This makes it animate ONLY when it enters the viewport */
+    animation: fadeInUp linear both;
+    animation-timeline: --revealing-image;
+    animation-range: entry 10% cover 30%;
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.pop-content {
+    position: relative;
+    background: #111;
+    padding: 15px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    border: 2px solid var(--primary-red);
+    box-shadow: 0 0 30px rgba(211, 47, 47, 0.4);
+
+    margin: auto;              /* 🔥 centers horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;       /* 🔥 centers content inside */
+}
+.zoom-img {
+    width: 100%;
+    border-radius: 6px;
+    transition: transform 0.4s ease;
+    cursor: zoom-in;
+}
+
+.zoom-img.zoomed {
+    transform: scale(2);
+    cursor: zoom-out;
+}
+.img-container {
+    overflow: hidden; /* prevents overflow */
+    border-radius: 8px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 🔥 keeps layout + fixes shape */
+}
