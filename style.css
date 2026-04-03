@@ -6,6 +6,18 @@ body {
     overflow-x: hidden; /* Prevents horizontal shaking during animations */
 }
 
+<style>
+    .btn-red, .btn-outline {
+        color: red !important; /* Forces the color to red */
+        text-decoration: none; /* Removes the underline */
+    }
+
+    /* This ensures it stays red even after being clicked */
+    .btn-red:visited, .btn-outline:visited {
+        color: red !important;
+    }
+</style>
+
 /* =========================================
    1. GLOBAL VARIABLES & RESET
    Change your main colors and fonts here
